@@ -43,7 +43,10 @@ def text_puzzle():
         f"<p {paragraph_style_bold}>The binary representation of the text is:</p><p {paragraph_style}>{binary}</p>"
     )
     number_of_vowels = sum(1 for char in text if char in "aeiou")
-    print(f"<p {paragraph_style}>The text contains {number_of_vowels} vowels.</p>")
+    if number_of_vowels == 0:
+        print(f"<p {paragraph_style}>The text does not contain any vowels.</p>")
+    else:
+        print(f"<p {paragraph_style}>The text contains {number_of_vowels} vowel{number_of_vowels != 1 and "s" or ""}.</p>")
 
 
 def initial_message(attempts, num):
