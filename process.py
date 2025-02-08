@@ -8,13 +8,17 @@ except ValueError:
     sys.exit(1)
 
 text = " ".join(sys.argv[2:])
-print("text", text)
+
+title_style = "style='color: #333; font-family: Arial, sans-serif; text-align: center; font-size: 24px;'"
+paragraph_style = "style='color: #333; font-family: Arial, sans-serif; text-align: center; font-size: 18px; max-width: 600px; margin: 0 auto 20px;'"
+paragraph_style_bold = "style='color: #333; font-family: Arial, sans-serif; text-align: center; font-size: 18px; max-width: 600px; margin: 0 auto 20px; font-weight: bold;'"
+subtitles_style = "style='color: #333; font-family: Arial, sans-serif; text-align: center; font-size: 20px;'"
 
 
 def number_puzzle():
-    print("<h1>Number Puzzle</h1>")
+    print(f"<h1 {title_style}>Number Puzzle</h1>")
     answer = (
-        "<p>The number "
+        f"<p {paragraph_style}>The number "
         + str(number)
         + " is {{even_odd}} and it's {{square_root_cube}}.</p>"
     )
@@ -33,26 +37,32 @@ def number_puzzle():
 
 
 def text_puzzle():
-    print("<h1>Text Puzzle</h1>")
+    print(f"<h1 {title_style}>Text Puzzle</h1>")
     binary = " ".join(format(ord(i), "08b") for i in text)
-    print(f"<p>The binary representation of the text is: \n {binary}</p>")
+    print(
+        f"<p {paragraph_style_bold}>The binary representation of the text is:</p><p {paragraph_style}>{binary}</p>"
+    )
     number_of_vowels = sum(1 for char in text if char in "aeiou")
-    print(f"<p>The text contains {number_of_vowels} vowels.</p>")
+    print(f"<p {paragraph_style}>The text contains {number_of_vowels} vowels.</p>")
 
 
 def initial_message(attempts, num):
     if attempts == 0:
-        print("<h2>Guess a number between 1 and 100: </h2>")
+        print(f"<h2 {subtitles_style}>Guess a number between 1 and 100: </h2>")
     elif attempts >= 5:
-        print("<h3>You have reached the maximum number of attempts.</h3>")
-        print(f"<h3>The treasure was hidden at {num}.</h3>")
+        print(
+            f"<h3 {subtitles_style}>You have reached the maximum number of attempts.</h3>"
+        )
+        print(f"<h3 {subtitles_style}>The treasure was hidden at {num}.</h3>")
         return True
     else:
-        print(f"<h2>Try again. You have {5 - attempts} attempts left.</h2>")
+        print(
+            f"<p {paragraph_style_bold}>Try again. You have {5 - attempts} attempts left.</p>"
+        )
 
 
 def treasure_hunt():
-    print("<h1>Treasure Hunt</h1>")
+    print(f"<h1 {title_style}>Treasure Hunt</h1>")
     guess = 0
     num = random.randint(1, 100)
     attempts = 0
@@ -72,13 +82,13 @@ def treasure_hunt():
         else:
             max_val = guess
         print(
-            f"<p>{guess} is {num > guess and 'less' or 'greater'} than the treasure.</p>"
+            f"<p {paragraph_style}>{guess} is {num > guess and 'less' or 'greater'} than the treasure.</p>"
         )
         attempts += 1
 
     if guess == num:
         print(
-            f"<h2>Congratulations! You found the treasure in {attempts} attempts.</h2>"
+            f"<h2 {subtitles_style}>Congratulations! You found the treasure in {attempts} attempts.</h2>"
         )
 
 
